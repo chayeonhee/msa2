@@ -48,11 +48,12 @@ pipeline {
         stage('Make Deployment and Service') {
             steps {
                 script {
-                    dir('gatewayserver') {
+                    dir('eurekaserver') {
                         // Kubernetes Deployment and Service 생성 및 적용 (1일차 교육때 사용한 deploy & service 생성 yaml 파일 등록하여 사용)
                         // sh "kubectl apply -f ./yaml/demo-app.yaml -n ${NAMESPACE}"
+                        sh "kubectl delete -f ./yaml/start.yaml -n ${NAMESPACE}| true"
                         sh "kubectl apply -f ./yaml/start.yaml -n ${NAMESPACE}"
-                         sh "kubectl rollout restart deployment/team6-eureka-server-cha -n ${NAMESPACE}"
+                        //  sh "kubectl rollout restart deployment/team6-eureka-server-cha -n ${NAMESPACE}"
                     }
                 }
             }
