@@ -16,7 +16,7 @@ pipeline {
                     checkout([$class: 'GitSCM',
                               branches: [[name: '*/main']],
                               extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'eurekaserver/']]]],
-                              userRemoteConfigs: [[url: 'https://github.com/chayeonhee/msa.git']]])
+                              userRemoteConfigs: [[url: 'https://github.com/chayeonhee/msa2.git']]])
                 }
             }
         }
