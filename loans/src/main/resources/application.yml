@@ -1,0 +1,75 @@
+server:
+  port: 8097
+spring:
+  profiles:
+    active: "local"
+  application:
+    name: "loans"
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  config:
+    import: "optional:configserver:http://team6-cfg-cha-sv:80/"
+    # import: "optional:configserver:http://192.168.100.221:30633/"
+management:
+  # metrics:
+  #   tags:
+  #     application: "loans"
+  # prometheus:
+  #   metrics:
+  #     export:
+  #       enabled: true
+  # tracing:
+  #   enabled: true
+  #   sampling:
+  #     probability: 1.0
+  # zipkin:
+  #   tracing:
+  #     endpoint: http://team6-zipkin:9411/api/v2/spans
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+eureka:
+  instance:
+    preferIpAddress: true
+    # lease-renewal-interval-in-seconds: 10
+    # lease-expiration-duration-in-seconds: 10
+    # hostname: localhost
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      # defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://team6-eureka-server-cha-sv:8761/eureka/
+
+info:
+  app:
+    name: "loans"
+    description: "Eazy Bank Loans Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      eazybytes:
+        loans: DEBUG
+build:
+  version: "11.0"
