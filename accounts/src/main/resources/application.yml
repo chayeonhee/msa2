@@ -88,3 +88,5 @@ logging:
     com:
       eazybytes:
         accounts: DEBUG
+build:
+  version: 13.0
