@@ -4,7 +4,7 @@ metadata:
   name: card-pod-cha
   namespace: group1-team6
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: card-lbl-cha
@@ -30,7 +30,7 @@ spec:
     app: card-lbl-cha
   ports:
     - protocol: TCP
-      port: 8088 # kube unique inner port
+      port: 80 # kube unique inner port
       targetPort: 8099 #listen port, container port, Docker Expose port is equal
       nodePort: 30631
   type: NodePort

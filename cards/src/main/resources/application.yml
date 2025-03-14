@@ -2,7 +2,7 @@ server:
   port: 8099
 spring:
   config:
-    import: "optional:configserver:http://192.168.100.221:30633/"
+    import: "optional:configserver:http://team6-cfg-cha-sv:80/"
   kafka:
     bootstrap-servers: 192.168.100.221:30641
   rabbitmq:
@@ -42,8 +42,8 @@ spring:
                   value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         rabbitmq-binder:
           type: rabbit
-  # profiles:
-  #   active: "local"
+  profiles:
+    active: "prod"
   application:
     name: "cards"
   datasource:
@@ -82,7 +82,7 @@ eureka:
     fetchRegistry: true
     registerWithEureka: true
     serviceUrl:
-      defaultZone: http://team6-eureka-server:8761/eureka/
+      defaultZone: http://team6-eureka-server-cha-sv:8761/eureka/
 
 
 info:
