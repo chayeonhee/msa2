@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: "local"
+    active: "prod"
   application:
     name: "accounts"
   datasource:
@@ -34,17 +34,17 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-  prometheus:
-    metrics:
-      export:
-        enabled: true
-  tracing:
-    enabled: true
-    sampling:
-      probability: 1.0
-  zipkin:
-    tracing:
-      endpoint: http://team6-zipkin:9411/api/v2/spans
+  # prometheus:
+  #   metrics:
+  #     export:
+  #       enabled: true
+  # tracing:
+  #   enabled: true
+  #   sampling:
+  #     probability: 1.0
+  # zipkin:
+  #   tracing:
+  #     endpoint: http://team6-zipkin:9411/api/v2/spans
       
 
 eureka:
