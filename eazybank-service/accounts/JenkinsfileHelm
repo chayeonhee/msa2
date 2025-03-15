@@ -19,7 +19,7 @@ pipeline {
                     // Git 레포지토리에서 cards 폴더만 체크아웃
                     checkout([$class: 'GitSCM',
                               branches: [[name: '*/main']],
-                              extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'accounts/']]]],
+                              extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'eazybank-service/accounts/']]]],
                               userRemoteConfigs: [[url: 'https://github.com/chayeonhee/msa2.git']]])
                 }
             }
@@ -66,8 +66,8 @@ pipeline {
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
-                    dir('accounts') {
-                        sh "helm upgrade --install ${HELM_SERVICE_NAME} ${HELM_CHART_PATH} --namespace ${NAMESPACE} --wait"
+                    dir('eazybank-service/accounts') {
+                        sh "helm upgrade --install ${HELM_SERVICE_NAME} ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ../../environments/prod-env/values.yaml --wait"
                     }
                 }
             }
