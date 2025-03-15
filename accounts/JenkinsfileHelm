@@ -24,32 +24,32 @@ pipeline {
                 }
             }
         }
-        stage('Build with Maven') {
-            steps {
-                script {
-                    dir('accounts') {
-                        sh 'mvn clean package -DskipTests'
-                    }
-                }
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    dir('accounts') {
-                        sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
-                    }
-                }
-            }
-        }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    // Docker 이미지를 Registry Server에 푸시
-                    sh "docker push ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-                }
-            }
-        }
+        // stage('Build with Maven') {
+        //     steps {
+        //         script {
+        //             dir('accounts') {
+        //                 sh 'mvn clean package -DskipTests'
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             dir('accounts') {
+        //                 sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             // Docker 이미지를 Registry Server에 푸시
+        //             sh "docker push ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+        //         }
+        //     }
+        // }
         // stage('Deploy and Service to Kubernetes') {
         //     steps {
         //         script {
