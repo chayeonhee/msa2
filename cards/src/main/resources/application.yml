@@ -10,6 +10,9 @@ spring:
     username: guest
     password: guest
   cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
     function:
       definition: kafkaToRabbitFunction
     stream:
@@ -59,7 +62,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
+    
 management:
   endpoints:
     web:
