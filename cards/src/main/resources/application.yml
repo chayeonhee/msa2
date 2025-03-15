@@ -1,8 +1,8 @@
 server:
   port: 8099
 spring:
-  config:
-    import: "optional:configserver:http://team6-cfg-cha-sv:80/"
+  # config:
+    # import: "optional:configserver:http://team6-cfg-cha-sv:80/"
   kafka:
     bootstrap-servers: 192.168.100.221:30641
   rabbitmq:
@@ -77,12 +77,11 @@ eureka:
     preferIpAddress: true
     lease-renewal-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 10
-    hostname: ${HOSTNAME}
   client:
     fetchRegistry: true
     registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://team6-eureka-server-cha-sv:8761/eureka/
+    # serviceUrl:
+      # defaultZone: http://team6-eureka-cha-sv:80/eureka/
 
 
 info:
