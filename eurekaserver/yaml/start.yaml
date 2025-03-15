@@ -2,36 +2,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: team6-eureka-server-cha
+  name: team6-eureka-pod-cha
   namespace: group1-team6
 spec:
-  # replicas: 1
+  replicas: 1
   selector:
     matchLabels:
-      app: team6-eureka-server-cha
+      app: eureka-lbl-cha
   template:
     metadata:
       labels:
-        app: team6-eureka-server-cha
+        app: eureka-lbl-cha
     spec:
       containers:
-      - name: team6-eureka-server-cha
+      - name: eureka-contain-cha
         image: k8s-vga-worker1:5000/group1-team6-eureka-server-cha:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8761
+        - containerPort: 8099
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: team6-eureka-server-cha-sv
+  name: team6-eureka-cha-sv
   namespace: group1-team6
 spec:
   selector:
-    app: team6-eureka-server-cha
+    app: eureka-lbl-cha
   ports:
     - protocol: TCP
-      port: 8761
-      targetPort: 8761
+      port: 80
+      targetPort: 8099
       nodePort: 30635
   type: NodePort

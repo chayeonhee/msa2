@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: account-dep-cha
+  name: team6-account-pod-cha
   namespace: group1-team6
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: account-pod-cha #pod selectr
+      app: account-lbl-cha #pod selectr
   template:
     metadata:
       labels:
-        app: account-pod-cha #pod label
+        app: account-lbl-cha #pod label
     spec:
       containers:
       - name: account-contain-cha
@@ -28,7 +28,7 @@ metadata:
   namespace: group1-team6
 spec:
   selector:
-    app: account-pod-cha
+    app: account-lbl-cha
   ports:
     - protocol: TCP
       port: 80 # kube unique inner port
