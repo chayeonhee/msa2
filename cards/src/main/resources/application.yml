@@ -81,13 +81,9 @@ management:
 eureka:
   instance:
     preferIpAddress: true
-    # lease-renewal-interval-in-seconds: 10
-    # lease-expiration-duration-in-seconds: 10
   client:
     fetchRegistry: true
     registerWithEureka: true
-    # serviceUrl:
-      # defaultZone: http://team6-eureka-cha-sv:80/eureka/
 
 
 info:
@@ -120,6 +116,6 @@ logging:
   level:
     com:
       eazybytes:
-        accounts: DEBUG
+        cards: DEBUG
 build:
-  version: "2.0"
+  version: 2.0
