@@ -9,7 +9,8 @@ spec:
     app: {{ .Values.appLabel }}
   ports:
     - protocol: TCP
-      port: {{ .Values.global.service.port }}
+      # port: 
+      port: 80
       targetPort: {{ .Values.global.service.targetPort }}
       nodePort: {{ .Values.service.nodePort }}
   type: {{ .Values.global.service.type }}
