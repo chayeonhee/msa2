@@ -7,6 +7,7 @@ pipeline {
         NAMESPACE = 'group1-team6'
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
+        HELM_CHART_PATH="./eazybank-service/accounts/helm-chart/"
     }
     stages {
         stage('Checkout') {
@@ -61,11 +62,19 @@ pipeline {
         //         }
         //     }
         // }
+         stage('Helm Dependency Update') {
+            steps {
+                sh """
+                    helm dependency update ${HELM_CHART_PATH}
+                    helm dependency build ${HELM_CHART_PATH}
+                """
+            }
+        }
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
                     // dir('eazybank-service/accounts') {
-                        sh "helm upgrade --install team6-cha-account-helm ./eazybank-service/accounts/helm-chart/ --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml --wait"
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml --wait"
                     // }
                 }
             }
