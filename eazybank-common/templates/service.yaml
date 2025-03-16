@@ -8,7 +8,7 @@ spec:
   selector:
     app: {{ .Values.appLabel }}
   ports:
-      protocol: TCP
+    - protocol: TCP
       port: {{ .Values.global.service.port }}
       targetPort: {{ .Values.global.service.targetPort }}
       nodePort: {{ .Values.service.nodePort }}
