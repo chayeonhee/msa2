@@ -73,7 +73,7 @@ pipeline {
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 
-                sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --debug"
+                // sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --debug"
             }
         }
          stage('HELM Deploy and Service to Kubernetes') {
