@@ -7,8 +7,6 @@ pipeline {
         NAMESPACE = 'group1-team6'
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
-        SERVICE_NAME = "team6-cha-accounts"  // 배포할 서비스 이름
-        HELM_CHART_PATH = "helm-chart"  // Helm 차트 경로
     }
     stages {
         stage('Checkout') {
@@ -19,7 +17,7 @@ pipeline {
                     // Git 레포지토리에서 cards 폴더만 체크아웃
                     checkout([$class: 'GitSCM',
                               branches: [[name: '*/main']],
-                              extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: 'eazybank-service/accounts/']]]],
+                              extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths: [[path: '/']]]],
                               userRemoteConfigs: [[url: 'https://github.com/chayeonhee/msa2.git']]])
                 }
             }
@@ -66,9 +64,9 @@ pipeline {
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
-                    dir('eazybank-service/accounts') {
-                        sh "helm upgrade --install ${HELM_SERVICE_NAME} ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ../../environments/prod-env/values.yaml --wait"
-                    }
+                    // dir('eazybank-service/accounts') {
+                        sh "helm upgrade --install team6-cha-account-helm ./eazybank-service/accounts/helm-chart/ --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml --wait"
+                    // }
                 }
             }
         }
