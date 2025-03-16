@@ -1,13 +1,12 @@
-service:
-  type: NodeType
-  port: 80
-  targetPort: 8099
-containerPort: 8099
-image:
-  policy: Always
-  tag: latest
-spec:
-  ports:
+global:
+  service:
+    type: NodeType
+    port: 80
+    targetPort: 8099
+  containerPort: 8099
+  image:
+    policy: Always
+    tag: latest
+  app:
+    server:
       port: 8099
-# app:
-  # serverPort: 8099
