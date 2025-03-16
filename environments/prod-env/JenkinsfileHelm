@@ -73,14 +73,14 @@ pipeline {
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 
-                // sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --debug"
+                sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --set app.serverPort=8099 --debug"
             }
         }
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
                     // dir('eazybank-service/accounts') {
-                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml --wait"
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml --set app.serverPort=8099 --wait"
                     // }
                 }
             }
