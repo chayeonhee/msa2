@@ -6,5 +6,5 @@ containerPort: 8099
 image:
   policy: Always
   tag: latest
-app:
-  serverPort: 8099
+# app:
+  # serverPort: 8099

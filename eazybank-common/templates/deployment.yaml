@@ -30,9 +30,9 @@ spec:
         envFrom:
           - configMapRef:
             name: {{ .Values.global.configMapName }}
-        env:
-        - name: SPRING_SERVER_PORT
-          value: {{ .Values.app.serverPort }}
+        # env:
+        # - name: SPRING_SERVER_PORT
+          # value: {{ .Values.app.serverPort }}
         # {{- if .Values.appname_enabled }}
         # - name: SPRING_APPLICATION_NAME
         #   value: {{ .Values.appName }}
