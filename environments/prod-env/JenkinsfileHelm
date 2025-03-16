@@ -66,12 +66,12 @@ pipeline {
         // }
          stage('Helm Dependency Update') {
             steps {
-                // sh 'helm dependency update ${COMMON_HELM_CHART_PATH}'
-                // sh 'helm dependency build ${COMMON_HELM_CHART_PATH}'
-                sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
+                sh 'helm dependency update ${COMMON_HELM_CHART_PATH}'
+                sh 'helm dependency build ${COMMON_HELM_CHART_PATH}'
                 sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
-                sh "helm dependency build ${HELM_CHART_PATH}"
+                sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
                 sh "helm dependency update ${HELM_CHART_PATH}"
+                sh "helm dependency build ${HELM_CHART_PATH}"
                 
                 sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --set app.serverPort=8099 --debug"
             }
