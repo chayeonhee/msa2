@@ -7,5 +7,4 @@ image:
   policy: Always
   tag: latest
 app:
-  server:
-    port: 8099
+  serverPort: 8099
