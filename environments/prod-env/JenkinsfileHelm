@@ -7,7 +7,7 @@ pipeline {
         NAMESPACE = 'group1-team6'
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
-        HELM_CHART_PATH="./eazybank-service/accounts/helm-chart/"
+        HELM_CHART_PATH="./eazybank-services/accounts/helm-chart/"
         COMMON_HELM_CHART_PATH="./eazybank-common/"
         GLOBAL_HELM_CHART_PATH="./environments/prod-env/"
     }
