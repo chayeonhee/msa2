@@ -7,11 +7,11 @@ metadata:
 spec:
   selector:
     app: {{ .Values.appLabel }}
-  type: {{ .Values.global.service.type }}
   ports:
     # - name: http
       protocol: TCP
       port: {{ .Values.global.service.port }}
       targetPort: {{ .Values.global.service.targetPort }}
       nodePort: {{ .Values.service.nodePort }}
+  type: {{ .Values.global.service.type }}
 {{- end -}}

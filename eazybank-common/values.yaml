@@ -1,6 +1,6 @@
 global:
   service:
-    type: NodeType
+    type: NodePort
     port: 80
     targetPort: 8099
   containerPort: 8099
