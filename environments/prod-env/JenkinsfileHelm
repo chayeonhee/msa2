@@ -79,7 +79,7 @@ pipeline {
             steps {
                 script {
                     // dir('eazybank-service/accounts') {
-                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml -f ./eazybank-common/values.yaml --wait"
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml -f ./eazybank-common/values.yaml"
                     // }
                 }
             }
