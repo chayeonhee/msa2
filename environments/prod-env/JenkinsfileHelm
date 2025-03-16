@@ -8,6 +8,7 @@ pipeline {
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
         HELM_CHART_PATH="./eazybank-service/accounts/helm-chart/"
+        COMMON_HELM_CHART_PATH="./eazybank-common/"
     }
     stages {
         stage('Checkout') {
@@ -65,6 +66,8 @@ pipeline {
          stage('Helm Dependency Update') {
             steps {
                 sh """
+                    helm dependency update ${COMMON_HELM_CHART_PATH}
+                    helm dependency build ${COMMON_HELM_CHART_PATH}
                     helm dependency update ${HELM_CHART_PATH}
                     helm dependency build ${HELM_CHART_PATH}
                 """
