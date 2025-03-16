@@ -9,6 +9,7 @@ pipeline {
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
         HELM_CHART_PATH="./eazybank-service/accounts/helm-chart/"
         COMMON_HELM_CHART_PATH="./eazybank-common/"
+        GLOBAL_HELM_CHART_PATH="./environments/prod-env/"
     }
     stages {
         stage('Checkout') {
@@ -69,6 +70,8 @@ pipeline {
                 // sh 'helm dependency build ${COMMON_HELM_CHART_PATH}'
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
+                sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
+                sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
                 sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --debug"
             }
         }
