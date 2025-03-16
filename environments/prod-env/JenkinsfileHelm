@@ -66,8 +66,8 @@ pipeline {
         // }
          stage('Helm Dependency Update') {
             steps {
-                sh 'helm dependency update ${COMMON_HELM_CHART_PATH}'
-                sh 'helm dependency build ${COMMON_HELM_CHART_PATH}'
+                sh "helm dependency update ${COMMON_HELM_CHART_PATH}"
+                sh "helm dependency build ${COMMON_HELM_CHART_PATH}"
                 sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
                 sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
                 sh "helm dependency update ${HELM_CHART_PATH}"
