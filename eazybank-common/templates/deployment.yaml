@@ -23,16 +23,16 @@ spec:
         # {{- else }}
         # image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         # {{- end }}
-        imagePullPolicy: {{ .Values.global.image.policy }}        
+        imagePullPolicy: {{ .Values.image.policy }}        
         ports:
-        - containerPort: {{ .Values.global.containerPort }}
+        - containerPort: {{ .Values.containerPort }}
           protocol: TCP
         envFrom:
           - configMapRef:
             name: {{ .Values.global.configMapName }}
         env:
         - name: SPRING_SERVER_PORT
-          value: {{ .Values.global.app.server.port }}
+          value: {{ .Values.app.server.port }}
         # {{- if .Values.appname_enabled }}
         # - name: SPRING_APPLICATION_NAME
         #   value: {{ .Values.appName }}

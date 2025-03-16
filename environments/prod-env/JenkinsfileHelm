@@ -71,6 +71,7 @@ pipeline {
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 
+                
                 sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml --namespace ${NAMESPACE} --debug"
             }
         }
@@ -78,7 +79,7 @@ pipeline {
             steps {
                 script {
                     // dir('eazybank-service/accounts') {
-                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml --wait"
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml -f ./eazybank-common/values.yaml --wait"
                     // }
                 }
             }

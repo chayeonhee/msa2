@@ -14,3 +14,15 @@ global:
   cardsURL: "team6-card-cha-sv:80"
   loansURL: "team6-loan-cha-sv:80"
   privateReposityroURL: k8s-vga-worker1:5000
+
+  # service:
+  #   type: NodePort
+  #   port: 80
+  #   targetPort: 8099
+  # containerPort: 8099
+  # image:
+  #   policy: Always
+  #   tag: latest
+  # app:
+  #   server:
+  #     port: 8099
