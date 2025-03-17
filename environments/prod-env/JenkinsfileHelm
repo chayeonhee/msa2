@@ -33,13 +33,13 @@ pipeline {
                 sh "helm dependency update ./cards/helm-chart"
                 sh "helm dependency build ./cards/helm-chart"
 
-                sh "helm template eazybank-common ./eazybank-common --debug"
-                sh "helm template eazybank-common ./eazybank-common -f ./eazybank-common/values.yaml --debug"
-                sh "helm show values ./eazybank-common"
+                // sh "helm template eazybank-common ./eazybank-common --debug"
+                // sh "helm template eazybank-common ./eazybank-common -f ./eazybank-common/values.yaml --debug"
+                // sh "helm show values ./eazybank-common"
                 // sh "helm template team6-cha-all-helm environments/prod-env --namespace ${NAMESPACE} --debug"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
-                  -f /var/lib/jenkins/workspace/team6-cha-helm/environments/prod-env/values.yaml \
-                  -f /var/lib/jenkins/workspace/team6-cha-helm/eazybank-common/values.yaml \
+                  -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
+                  -f ./${COMMON_HELM_CHART_PATH}/values.yaml \
                  --namespace ${NAMESPACE} --debug "
                
             }
@@ -50,7 +50,7 @@ pipeline {
                         sh "helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                         --namespace ${NAMESPACE} \
                         -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
-                        -f ../${COMMON_HELM_CHART_PATH}/values.yaml \
+                        -f ./${COMMON_HELM_CHART_PATH}/values.yaml \
                         --wait --timeout 10m0s"
                 }
             }
