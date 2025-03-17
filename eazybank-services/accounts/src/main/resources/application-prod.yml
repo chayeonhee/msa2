@@ -5,5 +5,5 @@ eureka:
 
 spring:
   config:
-    import: "optional:configserver:http://team6-cfg-cha-sv:80"
-    # import: "optional:configserver:http://${SPRING_CONFIG_IMPORT}"
+    import: "optional:configserver:http://team6-cfg-cha-sv:80/"
+    # import: "optional:configserver:http://${SPRING_CONFIG_IMPORT}/"
