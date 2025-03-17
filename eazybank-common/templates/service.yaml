@@ -11,6 +11,6 @@ spec:
     - protocol: TCP
       port: {{ .Values.eazybankcommon.service.port }}
       targetPort: {{ .Values.eazybankcommon.service.targetPort }}
-      nodePort: {{ .Values.eazybankcommon.service.nodePort }}
+      nodePort: {{ .Values.service.nodePort }}
   type: {{ .Values.eazybankcommon.service.type }}
 {{- end -}}
