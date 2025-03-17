@@ -7,8 +7,8 @@ global:
   namespace: group1-team6
   configMapName: team6-cha-configmap
   activeProfile: prod
-  eurekaServerURL: "team6-eureka-cha-sv:80"
-  configServerURL: "team6-cfg-cha-sv:80"
+  eurekaServerURL: "http://team6-eureka-cha-sv:80/eureka"
+  configServerURL: "optional:configserver:http://team6-cfg-cha-sv:80/"
   # gatewayServerURL: "team6-gw-cha-sv:80"
   # accountsURL: "team6-account-cha-sv:80"
   # cardsURL: "team6-card-cha-sv:80"

@@ -1,8 +1,8 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://${SPRING_EUREKA_IMPORT}/eureka/
+      defaultZone: configmap
 
 spring:
   config:
-    import: "optional:configserver:http://${SPRING_CONFIGSERVER_URL}/"
+    import: configmap
