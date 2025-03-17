@@ -1,7 +1,8 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://team6-eureka-cha-sv:80/eureka/
+      defaultZone: http://${SPRING_EUREKA_IMPORT}/eureka/
+      # defaultZone: http://team6-eureka-cha-sv:80/eureka/
 
 spring:
   config:
