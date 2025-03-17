@@ -28,7 +28,7 @@ spec:
             name: {{ .Values.global.configMapName }}
         env:
         - name: SPRING_SERVER_PORT
-          value: {{ .Values.app.server.port }}
+          value: "{{ .Values.app.server.port }}"
         - name: UI_MESSAGE
           value: "{{ .Values.app.message }}"
 {{- end -}}
