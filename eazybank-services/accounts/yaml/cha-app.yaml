@@ -20,6 +20,9 @@ spec:
         # imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8099
+        env:
+        - name: UI_MESSAGE
+          value: "{{ .Values.app.message }}"
 ---
 apiVersion: v1
 kind: Service

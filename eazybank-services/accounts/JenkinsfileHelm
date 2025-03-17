@@ -66,25 +66,25 @@ pipeline {
             }
         }
         
-        //  stage('Helm Dependency Update') {
-        //     steps {
-        //         // sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
-        //         // sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
-        //         //Chart.yaml이 있는 디렉토리에서 실행
-        //         sh "helm dependency update ${HELM_CHART_PATH}"
-        //         sh "helm dependency build ${HELM_CHART_PATH}"
+         stage('Helm Dependency Update') {
+            steps {
+                // sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
+                // sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
+                //Chart.yaml이 있는 디렉토리에서 실행
+                sh "helm dependency update ${HELM_CHART_PATH}"
+                sh "helm dependency build ${HELM_CHART_PATH}"
                 
                 
-        //         sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml  -f ${COMMON_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
-        //     }
-        // }
-        //  stage('HELM Deploy and Service to Kubernetes') {
-        //     steps {
-        //         script {
-        //                 sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait --timeout 10m0s"
-        //         }
-        //     }
-        // }
+                sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml  -f ${COMMON_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
+            }
+        }
+         stage('HELM Deploy and Service to Kubernetes') {
+            steps {
+                script {
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait --timeout 10m0s"
+                }
+            }
+        }
         // stage('Deployment Image to Update') {
         //     steps {
         //         script {
