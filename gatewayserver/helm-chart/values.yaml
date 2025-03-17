@@ -1,7 +1,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-deploymentName: gw-pod-cha
+deploymentName: team6-gw-pod-cha
 containerName: gw-contain-cha
 serviceName: team6-gw-cha-sv
 appLabel: gw-lbl-cha

@@ -14,5 +14,3 @@ image:
 
 service:
   nodePort: 30631
-
-private_repository_enabled: true

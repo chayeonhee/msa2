@@ -1,7 +1,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-deploymentName: cfg-pod-cha
+deploymentName: team6-cfg-pod-cha
 containerName: cfg-contain-cha
 serviceName: team6-cfg-cha-sv
 appLabel: cfg-lbl-cha

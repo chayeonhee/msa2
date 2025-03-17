@@ -7,7 +7,7 @@ pipeline {
         NAMESPACE = 'group1-team6'
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
-        HELM_CHART_PATH="./eazybank-services/accounts/helm-chart"
+        HELM_CHART_PATH="./accounts/helm-chart"
         COMMON_HELM_CHART_PATH="./eazybank-common"
         GLOBAL_HELM_CHART_PATH="./environments/prod-env"
     }
@@ -28,7 +28,7 @@ pipeline {
         // stage('Build with Maven') {
         //     steps {
         //         script {
-        //             dir('eazybank-services/accounts') {
+        //            dir('accounts') {
         //                 sh 'mvn clean package -DskipTests'
         //             }
         //         }
@@ -37,7 +37,7 @@ pipeline {
         // stage('Build Docker Image') {
         //     steps {
         //         script {
-        //             dir('eazybank-services/accounts') {
+        //             dir('accounts') {
         //                 sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
         //             }
         //         }
@@ -54,7 +54,7 @@ pipeline {
         // stage('Deploy and Service to Kubernetes') {
         //     steps {
         //         script {
-        //             dir('eazybank-services/accounts') {
+        //             dir('accounts') {
         //                 // Kubernetes Deployment and Service 생성 및 적용 (1일차 교육때 사용한 deploy & service 생성 yaml 파일 등록하여 사용)
         //                 sh "kubectl delete -f ./yaml/cha-app.yaml -n ${NAMESPACE} | true"
         //                 sh "kubectl apply -f ./yaml/cha-app.yaml -n ${NAMESPACE}"
