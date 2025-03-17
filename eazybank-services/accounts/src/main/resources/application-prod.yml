@@ -2,9 +2,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://team6-eureka-cha-sv:80/
-      # defaultZone: http://${SPRING_EUREKA_URL:team6-eureka-cha-sv:80}/
 
 spring:
   config:
     import: "optional:configserver:http://team6-cfg-cha-sv:80/"
-    # import: "optional:configserver:http://${SPRING_CONFIG_URL:team6-cfg-cha-sv:80}/"
