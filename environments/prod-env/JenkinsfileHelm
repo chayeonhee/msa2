@@ -26,6 +26,10 @@ pipeline {
                 // sh "helm uninstall team6-cha-account-helm -n group1-team6"
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
+                sh "helm dependency update ./accounts/helm-chart"
+                sh "helm dependency build ./accounts/helm-chart"
+                sh "helm dependency update ./cards/helm-chart"
+                sh "helm dependency build ./cards/helm-chart"
                 sh "helm template ${HELM_RELEASE_NAME} . \
                  -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
                  -f ${COMMON_HELM_CHART_PATH}/values.yaml \
