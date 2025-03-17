@@ -84,7 +84,7 @@ pipeline {
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
-                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait"
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml"
                 }
             }
         }
