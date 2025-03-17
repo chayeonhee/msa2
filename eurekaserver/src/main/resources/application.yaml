@@ -3,7 +3,10 @@ server:
 spring:
   application:
     name: eureka-server
+
 eureka:
+  server:
+    evictionIntervalTimerInMs: 0  
   instance:
     hostname: localhost
   client:
