@@ -44,11 +44,11 @@ dependencies:
     version: 0.1.0
     repository: file://../../cards/helm-chart
     
-  # - name: loans
-  #   version: 0.1.0
-  #   repository: file://../../loans/helm-chart
+  - name: loans
+    version: 0.1.0
+    repository: file://../../loans/helm-chart
 
-  # - name: gatewayserver
-  #   version: 0.1.0
-  #   repository: file://../../gatewayserver/helm-chart
+  - name: gatewayserver
+    version: 0.1.0
+    repository: file://../../gatewayserver/helm-chart
 
