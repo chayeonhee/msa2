@@ -32,7 +32,7 @@ pipeline {
                 sh "helm dependency build ./accounts/helm-chart"
                 sh "helm dependency update ./cards/helm-chart"
                 sh "helm dependency build ./cards/helm-chart"
-
+                sh "helm list -n group1-team6"
                 // sh "helm template eazybank-common ./eazybank-common --debug"
                 // sh "helm template eazybank-common ./eazybank-common -f ./eazybank-common/values.yaml --debug"
                 // sh "helm show values ./eazybank-common"
