@@ -28,13 +28,13 @@ dependencies:
     version: 0.1.0
     repository: file://../../eazybank-common
     
-  - name: eurekaserver
-    version: 0.1.0
-    repository: file://../../eurekaserver/helm-chart
+  # - name: eurekaserver
+  #   version: 0.1.0
+  #   repository: file://../../eurekaserver/helm-chart
 
-  - name: configserver
-    version: 0.1.0
-    repository: file://../../configserver/helm-chart
+  # - name: configserver
+  #   version: 0.1.0
+  #   repository: file://../../configserver/helm-chart
     
   - name: accounts
     version: 0.1.0

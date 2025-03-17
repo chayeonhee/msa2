@@ -28,7 +28,7 @@ pipeline {
                 sh "helm dependency build ./${COMMON_HELM_CHART_PATH}"
 
                 script {
-                    ['eurekaserver', 'configserver', 'accounts', 'cards', 'loans', 'gatewayserver'].each { service ->
+                    ['accounts', 'cards', 'loans', 'gatewayserver'].each { service ->
                         sh "helm dependency update ./${service}/helm-chart"
                         sh "helm dependency build ./${service}/helm-chart"
                     }
