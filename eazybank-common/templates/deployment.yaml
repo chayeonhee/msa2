@@ -28,7 +28,7 @@ spec:
             name: {{ .Values.global.configMapName }}
         env:
         - name: SPRING_SERVER_PORT
-          value: "{{ .Values.eazybank-common.app.server.port }}"
+          value: "{{ .Values.eazybankcommon.app.server.port }}"
         - name: UI_MESSAGE
-          value: "{{ .Values.eazybank-common.app.message }}"
+          value: "{{ .Values.eazybankcommon.app.message }}"
 {{- end -}}
