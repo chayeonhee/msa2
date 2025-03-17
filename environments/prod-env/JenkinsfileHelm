@@ -24,11 +24,11 @@ pipeline {
                 //Chart.yaml이 있는 디렉토리에서 실행
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
-                
+                aa
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                  -f ${COMMON_HELM_CHART_PATH}/values.yaml \
                  -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
-                 --namespace ${NAMESPACE} --debug > output.yaml"
+                 --namespace ${NAMESPACE} --debug "
                
             }
         }
