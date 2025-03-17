@@ -32,7 +32,11 @@ pipeline {
                 sh "helm dependency build ./accounts/helm-chart"
                 sh "helm dependency update ./cards/helm-chart"
                 sh "helm dependency build ./cards/helm-chart"
-              
+                sh "helm dependency update ./loans/helm-chart"
+                sh "helm dependency build ./loans/helm-chart"
+                sh "helm dependency update ./gatewayserver/helm-chart"
+                sh "helm dependency build ./gatewayserver/helm-chart"
+
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                   -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
                   -f ./${COMMON_HELM_CHART_PATH}/values.yaml \
