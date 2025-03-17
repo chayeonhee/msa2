@@ -22,6 +22,7 @@ pipeline {
          stage('Helm Dependency Update') {
             steps {
                 //Chart.yaml이 있는 디렉토리에서 실행
+                sh "helm uninstall team6-cha-account-helm -n group1-team6"
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
