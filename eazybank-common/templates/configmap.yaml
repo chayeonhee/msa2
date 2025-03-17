@@ -5,6 +5,6 @@ metadata:
   name: {{ .Values.global.configMapName }}
 data:
   SPRING_PROFILES_ACTIVE: {{ .Values.global.activeProfile }}
-  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: {{ .Values.global.eurekaServerURL }}
+  SPRING_EUREKA_URL: {{ .Values.global.eurekaServerURL }}
   SPRING_CONFIG_URL: {{ .Values.global.configServerURL }}
 {{- end -}}
