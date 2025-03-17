@@ -24,7 +24,7 @@ version: 0.1.0
 appVersion: "1.0.0"
 
 dependencies:
-  - name: eazybank-common # HELM 에서 차트의 고유 식별자, eazybank-common의 Chart.yaml의 name값과 동일해야함.
+  - name: eazybankcommon # HELM 에서 차트의 고유 식별자, eazybank-common의 Chart.yaml의 name값과 동일해야함.
     version: 0.1.0
     repository: file://../../eazybank-common
     
