@@ -5,11 +5,11 @@ pipeline {
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
 
-        COMMON_HELM_CHART_PATH="./eazybank-common"
-        GLOBAL_HELM_CHART_PATH="./environments/prod-env"
+        COMMON_HELM_CHART_PATH="eazybank-common"
+        GLOBAL_HELM_CHART_PATH="environments/prod-env"
 
         // HELM_CHART_PATH="./accounts/helm-chart"
-        HELM_CHART_PATH="./environments/prod-env"
+        HELM_CHART_PATH="environments/prod-env"
         HELM_RELEASE_NAME="team6-cha-all-helm"
     }
     stages {
@@ -31,8 +31,8 @@ pipeline {
                 sh "helm dependency update ./cards/helm-chart"
                 sh "helm dependency build ./cards/helm-chart"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
-                 -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
-                 -f ${COMMON_HELM_CHART_PATH}/values.yaml \
+                 -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
+                 -f ../${COMMON_HELM_CHART_PATH}/values.yaml \
                  --namespace ${NAMESPACE} --debug "
                
             }
@@ -42,8 +42,8 @@ pipeline {
                 script {
                         sh "helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                         --namespace ${NAMESPACE} \
-                        -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
-                        -f ${COMMON_HELM_CHART_PATH}/values.yaml \
+                        -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
+                        -f ../${COMMON_HELM_CHART_PATH}/values.yaml \
                         --wait --timeout 10m0s"
                 }
             }
