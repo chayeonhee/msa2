@@ -26,7 +26,7 @@ pipeline {
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 
                 
-                sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
+                sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} -f ${COMMON_HELM_CHART_PATH}/values.yaml  -f ${GLOBAL_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
             }
         }
          stage('HELM Deploy and Service to Kubernetes') {
