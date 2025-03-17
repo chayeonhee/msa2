@@ -36,19 +36,19 @@ dependencies:
   #   version: 0.1.0
   #   repository: file://../../configserver/helm-chart
     
-  - name: accounts
-    version: 0.1.0
-    repository: file://../../accounts/helm-chart
+  # - name: accounts
+  #   version: 0.1.0
+  #   repository: file://../../accounts/helm-chart
     
-  - name: cards
-    version: 0.1.0
-    repository: file://../../cards/helm-chart
+  # - name: cards
+  #   version: 0.1.0
+  #   repository: file://../../cards/helm-chart
     
   - name: loans
     version: 0.1.0
     repository: file://../../loans/helm-chart
 
-  - name: gatewayserver
-    version: 0.1.0
-    repository: file://../../gatewayserver/helm-chart
+  # - name: gatewayserver
+    # version: 0.1.0
+    # repository: file://../../gatewayserver/helm-chart
 
