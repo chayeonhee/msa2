@@ -8,7 +8,7 @@ pipeline {
         COMMON_HELM_CHART_PATH="./eazybank-common"
         GLOBAL_HELM_CHART_PATH="./environments/prod-env"
 
-        HELM_CHART_PATH="./environments/prod-env"
+        HELM_CHART_PATH="./accounts/helm-chart"
         HELM_RELEASE_NAME="team6-cha-all-helm"
     }
     stages {
@@ -25,8 +25,8 @@ pipeline {
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
-                 -f ${COMMON_HELM_CHART_PATH}/values.yaml \
                  -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
+                 -f ${COMMON_HELM_CHART_PATH}/values.yaml \
                  --namespace ${NAMESPACE} --debug "
                
             }
@@ -34,7 +34,11 @@ pipeline {
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
-                        sh "helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait --timeout 10m0s"
+                        sh "helm upgrade --install ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
+                        --namespace ${NAMESPACE} \
+                        -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
+                        -f ${COMMON_HELM_CHART_PATH}/values.yaml \
+                        --wait --timeout 10m0s"
                 }
             }
         }
