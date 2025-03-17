@@ -33,8 +33,10 @@ pipeline {
                 sh "ls -al"
                 sh "helm template eazybank-common ./eazybank-common --debug"
                 sh "helm template eazybank-common ./eazybank-common -f ./eazybank-common/values.yaml --debug"
+                sh "helm show values ./eazybank-common"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
-                 -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
+                  -f /var/lib/jenkins/workspace/team6-cha-helm/environments/prod-env/values.yaml \
+                  -f /var/lib/jenkins/workspace/team6-cha-helm/eazybank-common/values.yaml \
                  --namespace ${NAMESPACE} --debug "
                
             }
