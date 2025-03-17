@@ -26,16 +26,15 @@ pipeline {
                 // sh "helm uninstall team6-cha-account-helm -n group1-team6"
                 sh "helm dependency update ./${COMMON_HELM_CHART_PATH}"
                 sh "helm dependency build ./${COMMON_HELM_CHART_PATH}"
-                sh "helm dependency update ./${HELM_CHART_PATH}"
-                sh "helm dependency build ./${HELM_CHART_PATH}"
-                
 
                 script {
-                    ['eurekaserver', 'configserver', 'accounts', 'cards', 'loans', 'gatewayserver'].each { service ->
+                    ['eurekaserver', 'configserver', 'accounts', 'cards', 'loans', 'gatewayserver',"${HELM_CHART_PATH}"].each { service ->
                         sh "helm dependency update ./${service}/helm-chart"
                         sh "helm dependency build ./${service}/helm-chart"
                     }
                 }
+
+
 
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                   -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
