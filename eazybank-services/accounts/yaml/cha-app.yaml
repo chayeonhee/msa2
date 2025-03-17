@@ -22,7 +22,7 @@ spec:
         - containerPort: 8099
         env:
         - name: UI_MESSAGE
-          value: "{{ .Values.app.message }}"
+          value: "123"
 ---
 apiVersion: v1
 kind: Service
