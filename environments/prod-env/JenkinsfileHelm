@@ -7,9 +7,9 @@ pipeline {
         NAMESPACE = 'group1-team6'
         JAVA_HOME = '/tmp/jdk-21.0.5'
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
-        HELM_CHART_PATH="./eazybank-services/accounts/helm-chart/"
-        COMMON_HELM_CHART_PATH="./eazybank-common/"
-        GLOBAL_HELM_CHART_PATH="./environments/prod-env/"
+        HELM_CHART_PATH="./eazybank-services/accounts/helm-chart"
+        COMMON_HELM_CHART_PATH="./eazybank-common"
+        GLOBAL_HELM_CHART_PATH="./environments/prod-env"
     }
     stages {
         stage('Checkout') {
@@ -64,23 +64,27 @@ pipeline {
         //         }
         //     }
         // }
+        // stage('Deploy and Service to Kubernetes') {
+        //     steps {
+        //         sh "kubectl apply -f eazybank-common/templates/configmap.yaml -n ${NAMESPACE}"
+        //     }
+        // }
          stage('Helm Dependency Update') {
             steps {
-                sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
-                sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
+                // sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
+                // sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
+                //Chart.yaml이 있는 디렉토리에서 실행
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 
                 
-                sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ./environments/prod-env/values.yaml  -f ./eazybank-common/values.yaml --namespace ${NAMESPACE} --debug"
+                sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml  -f ${COMMON_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
             }
         }
          stage('HELM Deploy and Service to Kubernetes') {
             steps {
                 script {
-                    // dir('eazybank-service/accounts') {
-                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ./environments/prod-env/values.yaml -f ./eazybank-common/values.yaml"
-                    // }
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait"
                 }
             }
         }
