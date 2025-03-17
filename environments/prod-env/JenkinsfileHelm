@@ -8,7 +8,7 @@ pipeline {
         COMMON_HELM_CHART_PATH="./eazybank-common"
         GLOBAL_HELM_CHART_PATH="./environments/prod-env"
 
-        HELM_CHART_PATH="./environments/prod-env/"
+        HELM_CHART_PATH="./environments/prod-env"
         HELM_RELEASE_NAME="team6-cha-all-helm"
     }
     stages {
@@ -29,8 +29,8 @@ pipeline {
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                  -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
                  -f ${COMMON_HELM_CHART_PATH}/values.yaml \
-                 -f accounts/helm-chart/values.yaml \
-                 --namespace ${NAMESPACE} --debug"
+                 --namespace ${NAMESPACE} --debug > output.yaml"
+                 sh "helm get values team6-cha-all-helm --all -n group1-team6"
             }
         }
          stage('HELM Deploy and Service to Kubernetes') {
