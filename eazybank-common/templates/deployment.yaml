@@ -26,7 +26,7 @@ spec:
         # envFrom:
         # - configMapRef:
         #     name: {{ .Values.global.configMapName }}
-        # env:
-        # - name: SPRING_SERVER_PORT
-        #   value: "{{ .Values.app.server.port }}"
+        env:
+        - name: SPRING_SERVER_PORT
+          value: "{{ .Values.app.server.port }}"
 {{- end -}}
