@@ -30,9 +30,10 @@ pipeline {
                 sh "helm dependency build ./accounts/helm-chart"
                 sh "helm dependency update ./cards/helm-chart"
                 sh "helm dependency build ./cards/helm-chart"
+                sh "ls -al"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                  -f ./${GLOBAL_HELM_CHART_PATH}/values.yaml \
-                 -f ../${COMMON_HELM_CHART_PATH}/values.yaml \
+                 -f /var/lib/jenkins/workspace/team6-cha-helm/${COMMON_HELM_CHART_PATH}/values.yaml \
                  --namespace ${NAMESPACE} --debug "
                
             }
