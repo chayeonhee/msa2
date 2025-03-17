@@ -18,10 +18,10 @@ spec:
     spec:
       containers:
       - name: {{ .Values.containerName }}
-        image: "{{ .Values.global.privateReposityroURL }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.policy }}        
+        image: "{{ .Values.global.privateReposityroURL }}/{{ .Values.image.repository }}:{{ .Values.eazybankcommon.image.tag }}"
+        imagePullPolicy: {{ .Values.eazybankcommon.image.policy }}        
         ports:
-        - containerPort: {{ .Values.containerPort }}
+        - containerPort: {{ .Values.eazybankcommon.containerPort }}
           protocol: TCP
         envFrom:
         - configMapRef:
