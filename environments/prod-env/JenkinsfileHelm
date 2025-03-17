@@ -25,7 +25,6 @@ pipeline {
                 sh "helm dependency update ${HELM_CHART_PATH}"
                 sh "helm dependency build ${HELM_CHART_PATH}"
                 
-                sh "helm get values team6-cha-all-helm --all -n group1-team6"
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
                  -f ${COMMON_HELM_CHART_PATH}/values.yaml \
                  -f ${GLOBAL_HELM_CHART_PATH}/values.yaml \
