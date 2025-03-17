@@ -6,4 +6,4 @@ eureka:
 
 spring:
   config:
-    import: "optional:configserver:http://${SPRING_CONFIG_IMPORT}/"
+    import: "optional:configserver:http://${SPRING_CONFIGSERVER_URL}/"

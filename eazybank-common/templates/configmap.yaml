@@ -6,5 +6,5 @@ metadata:
 data:
   SPRING_PROFILES_ACTIVE: {{ .Values.global.activeProfile }}
   SPRING_EUREKA_IMPORT: {{ .Values.global.eurekaServerURL }}
-  SPRING_CONFIG_IMPORT: {{ .Values.global.configServerURL }}
+  SPRING_CONFIGSERVER_URL: {{ .Values.global.configServerURL }}
 {{- end -}}
