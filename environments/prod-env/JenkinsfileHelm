@@ -10,6 +10,7 @@ pipeline {
 
         HELM_CHART_PATH="environments/prod-env"
         HELM_RELEASE_NAME="team6-cha-all-helm"
+
     }
     stages {
         stage('Checkout') {
@@ -28,9 +29,12 @@ pipeline {
                 sh "helm dependency update ./${HELM_CHART_PATH}"
                 sh "helm dependency build ./${HELM_CHART_PATH}"
                 
-                ['eurekaserver', 'configserver', 'accounts', 'cards', 'loans', 'gatewayserver'].each { service ->
-                    sh "helm dependency update ./${service}/helm-chart"
-                    sh "helm dependency build ./${service}/helm-chart"
+
+                script {
+                    ['eurekaserver', 'configserver', 'accounts', 'cards', 'loans', 'gatewayserver'].each { service ->
+                        sh "helm dependency update ./${service}/helm-chart"
+                        sh "helm dependency build ./${service}/helm-chart"
+                    }
                 }
 
                 sh "helm template ${HELM_RELEASE_NAME} ${HELM_CHART_PATH} \
