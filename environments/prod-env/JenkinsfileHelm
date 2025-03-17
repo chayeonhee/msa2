@@ -64,11 +64,7 @@ pipeline {
         //         }
         //     }
         // }
-        // stage('Deploy and Service to Kubernetes') {
-        //     steps {
-        //         sh "kubectl apply -f eazybank-common/templates/configmap.yaml -n ${NAMESPACE}"
-        //     }
-        // }
+        
          stage('Helm Dependency Update') {
             steps {
                 // sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
