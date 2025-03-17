@@ -9,3 +9,4 @@ image:
 app:
   server:
     port: 8099
+  message: "helloworld account"

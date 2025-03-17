@@ -288,5 +288,11 @@ public class AccountsController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(hostName);
     }
+    @Value("${UI_MESSAGE}")
+    private String uiMessage;
 
+    @GetMapping("/mesg")
+    public String getMethodName() {
+        return uiMessage;
+    }
 }
