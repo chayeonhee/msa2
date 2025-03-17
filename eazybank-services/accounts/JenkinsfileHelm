@@ -25,66 +25,66 @@ pipeline {
                 // }
             }
         }
-        stage('Build with Maven') {
-            steps {
-                script {
-                    dir('eazybank-services/accounts') {
-                        sh 'mvn clean package -DskipTests'
-                    }
-                }
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    dir('eazybank-services/accounts') {
-                        sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
-                    }
-                }
-            }
-        }
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    // Docker 이미지를 Registry Server에 푸시
-                    sh "docker push ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
-                }
-            }
-        }
-        stage('Deploy and Service to Kubernetes') {
-            steps {
-                script {
-                    dir('eazybank-services/accounts') {
-                        // Kubernetes Deployment and Service 생성 및 적용 (1일차 교육때 사용한 deploy & service 생성 yaml 파일 등록하여 사용)
-                        sh "kubectl delete -f ./yaml/cha-app.yaml -n ${NAMESPACE} | true"
-                        sh "kubectl apply -f ./yaml/cha-app.yaml -n ${NAMESPACE}"
-                        // sh "kubectl rollout restart deployment/<deployment-name>"
-                        // image tag 변경 없이 적용하려면 pod 재시작
-                        // sh "kubectl rollout restart deployment/account-dep-cha -n ${NAMESPACE}"
-                    }
-                }
-            }
-        }
-        
-        //  stage('Helm Dependency Update') {
-        //     steps {
-        //         // sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
-        //         // sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
-        //         //Chart.yaml이 있는 디렉토리에서 실행
-        //         sh "helm dependency update ${HELM_CHART_PATH}"
-        //         sh "helm dependency build ${HELM_CHART_PATH}"
-                
-                
-        //         sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml  -f ${COMMON_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
-        //     }
-        // }
-        //  stage('HELM Deploy and Service to Kubernetes') {
+        // stage('Build with Maven') {
         //     steps {
         //         script {
-        //                 sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait --timeout 10m0s"
+        //             dir('eazybank-services/accounts') {
+        //                 sh 'mvn clean package -DskipTests'
+        //             }
         //         }
         //     }
         // }
+        // stage('Build Docker Image') {
+        //     steps {
+        //         script {
+        //             dir('eazybank-services/accounts') {
+        //                 sh "docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ."
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Push Docker Image') {
+        //     steps {
+        //         script {
+        //             // Docker 이미지를 Registry Server에 푸시
+        //             sh "docker push ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
+        //         }
+        //     }
+        // }
+        // stage('Deploy and Service to Kubernetes') {
+        //     steps {
+        //         script {
+        //             dir('eazybank-services/accounts') {
+        //                 // Kubernetes Deployment and Service 생성 및 적용 (1일차 교육때 사용한 deploy & service 생성 yaml 파일 등록하여 사용)
+        //                 sh "kubectl delete -f ./yaml/cha-app.yaml -n ${NAMESPACE} | true"
+        //                 sh "kubectl apply -f ./yaml/cha-app.yaml -n ${NAMESPACE}"
+        //                 // sh "kubectl rollout restart deployment/<deployment-name>"
+        //                 // image tag 변경 없이 적용하려면 pod 재시작
+        //                 // sh "kubectl rollout restart deployment/account-dep-cha -n ${NAMESPACE}"
+        //             }
+        //         }
+        //     }
+        // }
+        
+         stage('Helm Dependency Update') {
+            steps {
+                // sh "helm dependency update ${GLOBAL_HELM_CHART_PATH}"
+                // sh "helm dependency build ${GLOBAL_HELM_CHART_PATH}"
+                //Chart.yaml이 있는 디렉토리에서 실행
+                sh "helm dependency update ${HELM_CHART_PATH}"
+                sh "helm dependency build ${HELM_CHART_PATH}"
+                
+                
+                sh "helm template team6-cha-account-helm ${HELM_CHART_PATH} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml  -f ${COMMON_HELM_CHART_PATH}/values.yaml --namespace ${NAMESPACE} --debug"
+            }
+        }
+         stage('HELM Deploy and Service to Kubernetes') {
+            steps {
+                script {
+                        sh "helm upgrade --install team6-cha-account-helm ${HELM_CHART_PATH} --namespace ${NAMESPACE} -f ${GLOBAL_HELM_CHART_PATH}/values.yaml -f ${COMMON_HELM_CHART_PATH}/values.yaml --wait --timeout 10m0s"
+                }
+            }
+        }
         // stage('Deployment Image to Update') {
         //     steps {
         //         script {
